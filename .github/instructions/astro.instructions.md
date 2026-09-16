@@ -32,6 +32,41 @@ const games = await getAllGames(getDatabase());
 </Layout>
 ```
 
+### Component Props Documentation
+
+**Every reusable component must document its `Props` interface** using a JSDoc comment so the component API is self-explanatory:
+
+```astro
+---
+/**
+ * GameCard — displays a single game in a card layout with funding progress.
+ * 
+ * Props:
+ * - game: The game object with title, publisher, category, rating, and funding data.
+ * - highlight: (Optional) Highlight the card with accent styling if true (default: false).
+ */
+interface Props {
+  game: Game;
+  highlight?: boolean;
+}
+
+const { game, highlight = false } = Astro.props;
+---
+
+<article class={highlight ? "border-2 border-blue-500" : "border border-slate-700"}>
+  {/* … */}
+</article>
+```
+
+Guidelines:
+- Place the JSDoc comment immediately above the `interface Props` definition.
+- Start with a brief one-line description of the component's purpose.
+- List each prop with its type and any defaults or constraints.
+- Document optional props with "(Optional)" and note defaults.
+- Keep descriptions concise — a short phrase per prop is sufficient.
+
+See [`comments-and-documentation.instructions.md`](comments-and-documentation.instructions.md) for general documentation philosophy.
+
 ## Layouts
 
 - Create reusable layout components in `src/layouts/`

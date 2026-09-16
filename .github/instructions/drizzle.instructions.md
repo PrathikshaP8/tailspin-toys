@@ -55,6 +55,28 @@ export async function getAllGameIds(db: Database): Promise<number[]> {
 - Map raw rows to the app-facing `Game`/`Publisher`/`Category` types in one place; don't leak Drizzle row shapes into components.
 - Keep ordering/lookup logic in `games.ts`, not in pages.
 
+## Documentation: TSDoc / JSDoc
+
+**Every exported function in `db/` and `src/lib/` must have a TSDoc comment** describing its purpose, parameters (with `@param`), and return value (with `@returns`). This keeps the data layer API self-explanatory and helps both contributors and code intelligence tools understand intent.
+
+See [`comments-and-documentation.instructions.md`](comments-and-documentation.instructions.md) for detailed guidance on TSDoc/JSDoc format and philosophy. In summary:
+
+```ts
+/**
+ * Retrieves all games ordered by title.
+ * 
+ * @param db - The database instance (injectable for testability).
+ * @returns An array of games with related publisher and category data, ordered alphabetically by title.
+ */
+export async function getAllGames(db: Database): Promise<Game[]> {
+  // …
+}
+```
+
+- Place documentation immediately above the function.
+- Document the injectable `db` parameter's purpose for testability.
+- Note any side effects, determinism guarantees, or constraints.
+
 ## Determinism
 
 Seed-derived values must be reproducible across builds. Derive star ratings from a stable hash of the title (`ratingFromTitle`) — **never** `Math.random()`.

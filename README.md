@@ -12,6 +12,28 @@ Tailspin Toys is a crowdfunding platform for games with a developer theme. The p
 
 The database is migrated and seeded automatically before `dev`/`build` (via the `predev`/`prebuild` npm scripts) and is written to the gitignored `tailspin.db` file.
 
+## Coding Standards
+
+This project maintains clear, documented coding standards to ensure consistency and help contributors and Copilot produce correct changes.
+
+### Key principles
+
+- **Comment intent, not mechanics.** Comments explain *why* code exists, not what it does. See [`comments-and-documentation.instructions.md`](.github/instructions/comments-and-documentation.instructions.md).
+- **Document the data layer.** Every exported function in `db/` and `src/lib/` must have TSDoc/JSDoc comments describing purpose, parameters, and return values. See [`drizzle.instructions.md`](.github/instructions/drizzle.instructions.md).
+- **Document component contracts.** Reusable `.astro` components must document their `Props` interface. See [`astro.instructions.md`](.github/instructions/astro.instructions.md).
+- **Explicit types required.** All function parameters and return types must be explicitly annotated. See [`style.instructions.md`](.github/instructions/style.instructions.md).
+- **Keep comments current.** Treat outdated comments as bugs — update or delete them when the related code changes.
+
+### Instruction files
+
+Detailed guidance is maintained in `.github/instructions/`:
+- [`comments-and-documentation.instructions.md`](.github/instructions/comments-and-documentation.instructions.md) — comment philosophy and TSDoc/JSDoc patterns
+- [`drizzle.instructions.md`](.github/instructions/drizzle.instructions.md) — data layer patterns and documentation requirements
+- [`astro.instructions.md`](.github/instructions/astro.instructions.md) — Astro component patterns and Props documentation
+- [`style.instructions.md`](.github/instructions/style.instructions.md) — Tailwind CSS and TypeScript formatting standards
+- [`unit-tests.instructions.md`](.github/instructions/unit-tests.instructions.md) — Vitest test patterns
+- [`ui.instructions.md`](.github/instructions/ui.instructions.md) — UI component architecture and testing
+
 ## Using this template
 
 This repository is a GitHub template. When you create a new repository from it, a one-time **Bootstrap template issues** workflow (`.github/workflows/bootstrap-issues.yml`) runs automatically on the first push to `main` and opens a set of starter issues describing suggested first features. Each issue is defined by a Markdown file in `.github/bootstrap-issues/` — the first heading becomes the issue title and the remaining content becomes the body — so you can edit, add, or remove files there to control which issues are created.
